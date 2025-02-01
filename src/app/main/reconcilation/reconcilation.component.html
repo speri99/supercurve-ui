@@ -1,0 +1,84 @@
+<mat-toolbar>
+    <span>Reconcilation</span>
+    <span class="example-spacer"></span>
+</mat-toolbar>
+
+<div style="display: flex; flex-direction: column; place-content: space-around;align-items: center;">
+    <div>
+        <div style="display: flex;flex-direction: row;">
+
+            <div class="upload">
+                <input type="file" class="form-control" placeholder="Source File" (change)="onFileAdd($event.target)"
+                    aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <button mat-button>Upload BDO Report</button>
+            </div>
+
+            <div class="or">
+                <p>And</p>
+            </div>
+            <div class="upload">
+                <input type="file" class="form-control" placeholder="Target File" (change)="onFileAdd($event.target)">
+                <button mat-button>Upload Master Report</button>
+            </div>
+
+        </div>
+    </div>
+    <button mat-raised-button color="primary" style="margin: 10px;" (click)="getReconcilationData()"> Get Reconcilation
+        Report</button>
+
+
+</div>
+
+
+
+
+
+<div class="download-div" *ngIf="dataSource.length>0">
+    <button mat-raised-button (click)="generatePdf()">Download</button>
+    <button mat-raised-button>Email</button>
+</div>
+
+<table mat-table #reconclieTable [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource.length>0">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+        </td>
+    </ng-container>
+
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Account Number">
+        <th mat-header-cell *matHeaderCellDef> Account Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.accountNumber}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Transaction Id">
+        <th mat-header-cell *matHeaderCellDef> Transaction Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.transactionId}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Transaction Amount">
+        <th mat-header-cell *matHeaderCellDef> Transaction Amount</th>
+        <td mat-cell *matCellDef="let element"> {{element.transactionAmount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Source">
+        <th mat-header-cell *matHeaderCellDef> Source </th>
+        <td mat-cell *matCellDef="let element"> {{element.source}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+    </tr>
+</table>

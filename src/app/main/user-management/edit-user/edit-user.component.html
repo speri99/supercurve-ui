@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Edit User Details</h2>
+<mat-dialog-content>
+    <form [formGroup]="userForm">
+        <!-- Username -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            formControlName="username"
+            placeholder="Enter username"
+          />
+        </mat-form-field>
+    
+        <!-- Email -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Enter email" />
+        </mat-form-field>
+
+        <h3>User Permissisons</h3>
+
+        <div *ngFor="let permission of totalPermissionsList; let i = index" class="permission-item">
+            <mat-checkbox [checked]= "permission.enabled"
+              [formControlName]="'permission_' + i"
+              (change)="onCheckboxChange(permission, $event.checked)"
+            >
+              {{ permission.permission_name }}
+            </mat-checkbox>
+          </div>
+      </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary"   (click)="onSubmit()">
+    Update
+  </button>
+</mat-dialog-actions>

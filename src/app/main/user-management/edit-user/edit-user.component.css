@@ -1,0 +1,41 @@
+/* Center the content within the modal */
+mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* Style each permission item */
+  .permission-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  /* Adjust dialog actions alignment */
+  mat-dialog-actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  
+  /* Full-width inputs */
+  mat-form-field {
+    width: 100%;
+  }
+  
+  /* Responsive dialog width */
+  @media (min-width: 600px) {
+    :host ::ng-deep .mat-dialog-container {
+      max-width: 500px;
+      width: 90%;
+    }
+  }
+  
+  @media (max-width: 599px) {
+    :host ::ng-deep .mat-dialog-container {
+      width: 95%;
+    }
+  }

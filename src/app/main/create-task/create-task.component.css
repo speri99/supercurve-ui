@@ -1,0 +1,33 @@
+
+.upload{
+    background-color: #a1a7a6;
+    padding: 45px;
+    box-shadow: 0 2px 5px 0 rgba(52,47,51,.63);
+    opacity: .9;
+    color: #fff;
+    text-align: center;
+}
+
+
+.input{
+    background-color: #fafafa;
+    padding: 45px;
+    opacity: .9;
+    color: #fff;
+    text-align: center;
+}
+
+.or{
+    padding: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input2{
+    background-color: #fafafa;
+    padding: 10px;
+    opacity: .9;
+    color: #fff;
+    text-align: center;
+}

@@ -1,0 +1,12 @@
+@import "../create-task/create-task.component.css";
+table {
+    width: 100%;
+  }
+
+
+  .download-div{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+  }

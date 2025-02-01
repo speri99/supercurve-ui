@@ -1,0 +1,97 @@
+<!-- <div style="padding: 1em;display: flex;justify-content: flex-end;">
+    <button nz-button nzType="primary" (click)="openModal()">
+        <span>Create</span>
+      </button>
+</div>
+
+
+  <nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Create Incident"
+  [nzFooter]="null"
+  (nzOnCancel)="closeModal()"
+>
+
+ 
+  <ng-container *nzModalContent>
+    <nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+    <form [formGroup]="incidentForm" (ngSubmit)="onSubmit()">
+       
+          <div nz-col nzSpan="12">
+            <label>Customer Name</label>
+            <input nz-input formControlName="customerName" placeholder="Enter Customer Name" />
+          </div>
+          <div nz-col nzSpan="12">
+            <label>Store Name</label>
+            <input nz-input formControlName="storeName" placeholder="Enter Store Name" />
+          </div>
+       
+    
+       
+          <div nz-col nzSpan="12">
+            <label>Camera Name</label>
+            <input nz-input formControlName="cameraName" placeholder="Enter Camera Name" />
+          </div>
+          <div nz-col nzSpan="12">
+            <label>Incident Type</label>
+            <nz-select formControlName="incidentType" nzPlaceHolder="Select Incident Type">
+              <nz-option nzValue="hardware" nzLabel="Hardware Issue"></nz-option>
+              <nz-option nzValue="software" nzLabel="Software Issue"></nz-option>
+              <nz-option nzValue="other" nzLabel="Other"></nz-option>
+            </nz-select>
+          </div>
+     
+    
+      
+          <div nz-col nzSpan="12">
+            <label>Priority</label>
+            <nz-select formControlName="priority" nzPlaceHolder="Select Priority">
+              <nz-option nzValue="low" nzLabel="Low"></nz-option>
+              <nz-option nzValue="medium" nzLabel="Medium"></nz-option>
+              <nz-option nzValue="high" nzLabel="High"></nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="12">
+            <label>Attachment</label>
+            <input type="file" (change)="onFileChange($event)" multiple />
+          </div>
+       
+    
+        <div style="margin-top: 16px; text-align: right;">
+          <button nz-button nzType="default" (click)="closeModal()">Cancel</button>
+          <button nz-button nzType="primary" [disabled]="incidentForm.invalid" htmlType="submit">
+            Submit
+          </button>
+        </div>
+      </form>
+      </nz-spin>
+</ng-container>
+</nz-modal> -->
+
+<div class="email-container">
+    <h2>Reporting</h2>
+    <nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+        <form>
+            <label for="customer-name">Customer Name:</label>
+            <input nz-input placeholder="Enter customer name" [(ngModel)]="customerName" name="customerName" required />
+
+            <nz-upload [nzBeforeUpload]="beforeUpload"
+            [nzPreview]="handlePreview" [nzMultiple]="true" [nzFileList]="attachments"
+                [nzShowUploadList]="{ showPreviewIcon: true, showRemoveIcon: true }" (nzRemove)="removeFile($event)">
+                <button nz-button>
+                    <i nz-icon nzType="upload"></i> Attach Files
+                </button>
+            </nz-upload>
+
+            <!-- <div class="preview-container">
+                <h4>Attachments Preview</h4>
+                <div *ngFor="let file of attachments" class="preview-item">
+                    <span>{{ file.name }}</span>
+                </div>
+            </div> -->
+
+            <button nz-button (click)="onSubmit()" nzType="primary" [disabled]="!customerName || attachments.length === 0">Send
+                Email</button>
+        </form>
+    </nz-spin>
+</div>

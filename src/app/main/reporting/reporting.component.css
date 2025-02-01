@@ -1,0 +1,30 @@
+.email-container {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+
+  .email-container h2 {
+    text-align: center;
+  }
+
+  .email-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .preview-container {
+    margin-top: 20px;
+  }
+
+  .preview-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0;
+  }

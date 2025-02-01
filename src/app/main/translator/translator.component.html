@@ -1,0 +1,87 @@
+<div class="mat-padding" layout="column" layout-align="center center">
+
+    <mat-card flex="70">
+        <mat-card-header>
+            <mat-card-title>Text Translator</mat-card-title>
+          </mat-card-header>
+        <mat-card-content>
+            <div style="display: flex;flex-direction: row;">
+                <div style="display: flex;flex-direction: column; justify-content: space-evenly;padding: 10px;width: 40%;">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Source Language</mat-label>
+                        <mat-select [(value)]="sourceLanguage.name">
+                            <mat-option *ngFor="let language of acceptedLanguages" [value]="language.name">
+                                {{language.name}}
+                            </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+    
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Enter Text</mat-label>
+                        <textarea matInput rows="10" cols="40" [(ngModel)]="input"></textarea>
+                      </mat-form-field>
+    
+                </div>
+                <div style="display: flex;align-items: center;justify-content: center;width: 8%;">
+                   <mat-icon (click)="translate()">swap_horiz</mat-icon>
+                </div>
+                <div style="display: flex;flex-direction: column;padding: 10px;width: 40%;">
+    
+                    <mat-form-field appearance="fill">
+                        <mat-label>Target Language</mat-label>
+                        <mat-select [(value)]="targetLanguage.name" (selectionChange)="targetLanguageChange($event)">
+                            <mat-option *ngFor="let language of acceptedLanguages" [value]="language.name">
+                                {{language.name}}
+                              </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+    
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Address 2</mat-label>
+                        <textarea matInput rows="10" cols="40" [(ngModel)]="output"></textarea>
+                      </mat-form-field>
+    
+                </div>
+            
+            </div>
+            <div style="display: flex;justify-content: flex-end;">
+                <button nz-button nzType="primary" [nzLoading]="isAuditDataLoading" (click)="getAuditData()">
+                    <!-- <span nz-icon nzType="poweroff"></span> -->
+                    Show Previous Transactions
+                  </button>
+            </div>
+
+            <div style="padding: 10px;">
+            <nz-table #basicTable [nzData]="auditData" *ngIf="auditData.length>0">
+                <thead>
+                  <tr>
+                    <th>Input</th>
+                    <th>Source</th>
+                    <th>Output</th>
+                    <th>Traget</th>
+                    <th>Transaction Time</th>
+                  
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of basicTable.data">
+                    <td>{{data.input}}</td>
+                    <td>{{data.sourceLang}}</td>
+                    <td>{{data.output}}</td>
+                    <td>{{data.targetLang}}</td>
+                    <td>{{data.translationDtTm}}</td>
+            
+                  </tr>
+                </tbody>
+              </nz-table>
+            </div>
+           
+        </mat-card-content>
+      
+    </mat-card>
+   
+</div>
+
+
+
+

@@ -1,0 +1,12 @@
+<div class="welcome-page">
+    <nz-card nzTitle="Welcome to the Sky Security" [nzBordered]="false">
+      <p>Welcome to the Sky Security Dashboard, Enjoy your experience!</p>
+    </nz-card>
+  </div>
+
+
+  <div>
+    <h3>Upload Excel File</h3>
+    <input type="file" (change)="onFileChange($event)" accept=".xlsx, .xls" />
+    <textarea [value]="textAreaContent" rows="20" cols="50"></textarea>
+  </div>

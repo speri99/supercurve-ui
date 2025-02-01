@@ -1,0 +1,132 @@
+<nz-layout>
+  <nz-affix [nzOffsetTop]="offsetTop">
+  <nz-header>
+    <div nz-row style="color: white;"> 
+      <div nz-col nzSpan="2">
+        <div class="logo"></div>
+      </div>
+      <div nz-col nzSpan="21"></div>
+      <!-- <div nz-col nzSpan="1" (click)="open()">
+        <span nz-icon nzType="bell" nzTheme="outline"></span>
+      </div> -->
+      <div nz-col nzSpan="1" (click)="signout()">
+        <span nz-icon nzType="logout" nzTheme="outline"></span>
+      </div>
+    </div>
+  </nz-header>
+</nz-affix>
+  <nz-layout>
+    <nz-sider  nzCollapsible nzWidth="220px" nzTheme="dark" style="padding-top: 20px;position: sticky;">
+      <ul style="" nz-menu nzTheme="dark" nzMode="inline">
+        <li nz-menu-item [routerLink]="'/main/customers'" *ngIf="userRoles.includes('SC.MANAGER')">
+          <span nz-icon nzType="usergroup-add"></span>
+          <span>Customer Onboarding</span>
+        </li>
+        <li nz-menu-item [routerLink]="'/main/user-management'" *ngIf="userRoles.includes('SC.USER.MANAGEMENT')">
+          <span nz-icon nzType="user"></span>
+          <span>User Management</span>
+        </li>
+        <!-- <li nz-menu-item [routerLink]="'/main/customers'" *ngIf="userRoles.includes('ROLE_ADMIN')">
+          <span nz-icon nzType="pie-chart"></span>
+          <span>Dashboard</span>
+        </li> -->
+        <!-- <li nz-menu-item [routerLink]="'/main/customers'" *ngIf="userRoles.includes('SC.MANAGER')">
+          <span nz-icon nzType="audit"></span>
+          <span>Audit</span>
+        </li> -->
+        <li nz-menu-item (click)="goToLink()" *ngIf="userRoles.includes('sc.access.application')">
+          <span nz-icon nzType="pie-chart"></span>
+          <span>Web Client</span>
+        </li>
+        <li nz-menu-item  [routerLink]="'/main/incident'" *ngIf="userRoles.includes('sc.access.application')">
+          <span nz-icon nzType="exclamation-circle"></span>
+          <span>Incident Management</span>
+        </li>
+        <li nz-menu-item  [routerLink]="'/main/reporting'" *ngIf="userRoles.includes('sc.access.application')">
+          <span nz-icon nzType="file-text"></span>
+          <span>Reporting</span>
+        </li>
+        <!-- <li nz-menu-item [routerLink]="'/main/customers'" *ngIf="userRoles.includes('ROLE_USER')">
+          <span nz-icon nzType="pie-chart"></span>
+          <span>Customer Onboarding</span>
+        </li> -->
+        <!-- <li nz-menu-item [routerLink]="'/main/reconcilation'" *ngIf="userRoles.includes('ROLE_ADMIN')">
+          <span nz-icon nzType="pie-chart"></span>
+          <span>Reconcilation</span>
+        </li>
+        <li nz-menu-item [routerLink]="'/main/user-management'" *ngIf="userRoles.includes('ROLE_ADMIN')">
+          <span nz-icon nzType="pie-chart"></span>
+          <span>User Management</span>
+        </li>
+        <li nz-menu-item [routerLink]="'/main/create-task'" *ngIf="userRoles.includes('ROLE_USER')">
+          <span nz-icon nzType="pie-chart"></span>
+          <span>Create Task</span>
+        </li>
+        <li nz-menu-item [routerLink]="'/main/translator'" >
+          <span nz-icon nzType="pie-chart"></span>
+          <span>Translator</span>
+        </li>
+        <li nz-menu-item [routerLink]="'/main/create-account'" >
+          <span nz-icon nzType="pie-chart"></span>
+          <span>Create Evaluation Template</span>
+        </li>
+        <li nz-menu-item [routerLink]="'/main/anotator-management'" >
+          <span nz-icon nzType="pie-chart"></span>
+          <span>Create Evaluation Template</span>
+        </li>
+        <li nz-menu-item [routerLink]="'/main/fir'" >
+          <span nz-icon nzType="pie-chart"></span>
+          <span>FIR Information</span>
+        </li>
+        <li nz-menu-item [routerLink]="'/main/booking'" >
+          <span nz-icon nzType="pie-chart"></span>
+          <span>Booking</span>
+        </li>
+
+        <li nz-menu-item [routerLink]="'/main/vallet-service'" >
+          <span nz-icon nzType="pie-chart"></span>
+          <span>Vallet Serivce</span>
+        </li> -->
+      </ul>
+    </nz-sider>
+    <nz-layout class="inner-layout">
+      <!-- <nz-breadcrumb>
+        <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+        <nz-breadcrumb-item>List</nz-breadcrumb-item>
+        <nz-breadcrumb-item>App</nz-breadcrumb-item>
+      </nz-breadcrumb> -->
+      <nz-content>
+        <router-outlet></router-outlet>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>
+
+<nz-drawer
+[nzClosable]="false"
+[nzVisible]="visible"
+nzPlacement="right"
+nzTitle="Notifications"
+(nzOnClose)="close()"
+>
+<ng-container *nzDrawerContent>
+  <nz-list class="demo-loadmore-list" [nzLoading]="initLoading">
+    
+      <nz-list-item *ngFor="let item of list">
+          <nz-list-item-meta
+            nzAvatar="KP"
+            >
+            <nz-list-item-meta-title>
+              <a href="https://ng.ant.design">{{ item .title}}</a>
+            </nz-list-item-meta-title>
+          </nz-list-item-meta>
+          <ul nz-list-item-actions>
+            <nz-list-item-action><a (click)="edit(item)">edit</a></nz-list-item-action>
+            <nz-list-item-action><a (click)="edit(item)">more</a></nz-list-item-action>
+          </ul>
+        
+      </nz-list-item>
+      </nz-list>
+    
+</ng-container>
+</nz-drawer>

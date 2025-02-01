@@ -1,0 +1,63 @@
+<nz-card style="width: 90%;margin-top: 16px" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+  <nz-skeleton [nzActive]="true" [nzLoading]="loading" [nzAvatar]="{ size: 'large' }">
+    <nz-card-meta nzTitle="Booking" nzDescription="Please enter booking info"></nz-card-meta>
+  </nz-skeleton>
+
+  <div>
+
+    <img style="width: 100%;" src="../../../assets/map.png">
+
+  </div>
+
+  <nz-divider nzText="Select Location"></nz-divider>
+
+  <nz-form-item style="display: flex;flex-direction: row;">
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">Location</nz-form-label>
+    <nz-input-group style="width: 60%;" nzSearch nzSize="default" [nzAddOnAfter]="suffixIconButton">
+      <input placeholder="input here" nz-input [(ngModel)]="inputValue" (input)="onChange($event)"
+        [nzAutocomplete]="auto" />
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button style="height: 32px;" nz-button nzType="primary" nzSize="large" nzSearch>
+        <span nz-icon nzType="search" nzTheme="outline"></span>
+      </button>
+    </ng-template>
+    <nz-autocomplete #auto>
+      <nz-auto-option class="global-search-item" (selectionChange)="locationSlection($event)" [nzValue]="option.value" *ngFor="let option of options">
+        {{ option.value }}
+      </nz-auto-option>
+    </nz-autocomplete>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Vechicle Number</nz-form-label>
+    <nz-form-control [nzSm]="14" placeholder="Vechile Number" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+      <input nz-input placeholder="Vechile Number" id="email" [(ngModel)]="bookingRequest.vechicleNumber" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>Time</nz-form-label>
+    <nz-date-picker [nzDisabledDate]="disabledStartDate" nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss"
+      (ngModelChange)="onChangeDate($event)" [(ngModel)]="startValue" nzPlaceHolder="Booking Time"
+      (nzOnOpenChange)="handleStartOpenChange($event)"></nz-date-picker>
+  </nz-form-item>
+  <div class="example-input">
+
+    <br />
+
+
+  </div>
+
+
+</nz-card>
+<ng-template #avatarTemplate>
+  <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+</ng-template>
+<ng-template #actionSetting>
+
+</ng-template>
+<ng-template #actionEdit>
+  <button nz-button nzType="primary" (click)="createBooking()">Submit</button>
+</ng-template>
+<ng-template #actionEllipsis>
+  <!-- <span nz-icon nzType="ellipsis"></span> -->
+</ng-template>

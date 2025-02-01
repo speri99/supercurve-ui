@@ -1,0 +1,241 @@
+<form style="min-width: 600px;" nz-form [formGroup]="customerInfoForm" class="login-form">
+    <nz-steps [nzCurrent]="current">
+        <nz-step nzTitle="Customer Info">
+        </nz-step>
+        <nz-step nzTitle="Store Info"></nz-step>
+    </nz-steps>
+    <div class="steps-content" *ngIf="current==0">
+        <nz-divider nzText="Customer Information" nzOrientation="left"></nz-divider>
+        <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="10" nzRequired nzFor="email">Email</nz-form-label>
+            <nz-form-control [nzSm]="6" [nzXs]="18" nzErrorTip="The input is not valid E-mail!">
+                <input nz-input formControlName="email" id="email" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="10" nzFor="firstName" nzRequired nzTooltipTitle="Your login id">
+                <span>First Name</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="6" [nzXs]="18" nzErrorTip="Please input your user name!">
+                <input nz-input id="firstName" formControlName="firstName" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="10" nzFor="lastName" nzRequired nzTooltipTitle="Your login id">
+                <span>Last Name</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="6" [nzXs]="18" nzErrorTip="Please input your user name!">
+                <input nz-input id="lastName" formControlName="lastName" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="10" nzFor="password" nzRequired>Password</nz-form-label>
+            <nz-form-control [nzSm]="6" [nzXs]="18" nzErrorTip="Please input your password!">
+                <input nz-input type="password" id="password" formControlName="password"
+                    (ngModelChange)="updateConfirmValidator()" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="10" nzFor="checkPassword" nzRequired>Confirm Password</nz-form-label>
+            <nz-form-control [nzSm]="6" [nzXs]="18" [nzErrorTip]="errorTpl">
+                <input nz-input type="password" formControlName="confirmPassword" id="checkPassword" />
+                <ng-template #errorTpl let-control>
+                    <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
+                    <ng-container *ngIf="control.hasError('confirm')">
+                        Two passwords that you enter is inconsistent!
+                    </ng-container>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="10" nzFor="buisnessName" nzRequired nzTooltipTitle="Your login id">
+                <span>Business Name</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="6" [nzXs]="18" nzErrorTip="Please input your user name!">
+                <input nz-input id="businessName" formControlName="businessName" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="10" nzFor="phoneNumber" nzRequired nzTooltipTitle="Your login id">
+                <span>Phone Number</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="6" [nzXs]="18" nzErrorTip="Please input your user name!">
+                <input nz-input id="phoneNumber" formControlName="phoneNumber" />
+            </nz-form-control>
+        </nz-form-item>
+
+
+        <nz-divider nzText="Location Information" nzOrientation="left"></nz-divider>
+
+        <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="10" nzRequired nzFor="address">Address</nz-form-label>
+            <nz-form-control [nzSm]="6" [nzXs]="18" nzErrorTip="The input is not valid E-mail!">
+                <input nz-input formControlName="address" id="address" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="10" nzFor="city" nzRequired nzTooltipTitle="Your login id">
+                <span>City/Town</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="6" [nzXs]="18" nzErrorTip="Please input your user name!">
+                <input nz-input id="city" formControlName="city" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="10" nzFor="state" nzRequired nzTooltipTitle="Your login id">
+                <span>State/Provience</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="6" [nzXs]="18" nzErrorTip="Please input your user name!">
+                <input nz-input id="state" formControlName="state" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="10" nzFor="postalcode" nzRequired nzTooltipTitle="Your login id">
+                <span>PostalCode</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="6" [nzXs]="18" nzErrorTip="Please input your user name!">
+                <input nz-input id="postalcode" formControlName="postalCode" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="10" nzFor="country" nzRequired nzTooltipTitle="Your login id">
+                <span>Country</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="6" [nzXs]="18" nzErrorTip="Please input your user name!">
+                <input nz-input id="country" formControlName="country" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-divider nzText="Default Settings" nzOrientation="left"></nz-divider>
+
+        <div nz-row [nzGutter]="16" style="padding: 2em;">
+            
+            <div nz-col class="gutter-row" [nzSpan]="3">
+                <div class="inner-box">Cloud Recording :</div>
+            </div>
+            <div nz-col class="gutter-row" [nzSpan]="3">
+                <div class="inner-box" style="display: flex;justify-content: flex-start;">
+                    <nz-select style="width: 80%;" ngModel="Weeks" [nzOptions]="listOfOption" formControlName="defaultRecordingFor"></nz-select>
+                </div>
+            </div>
+            <div nz-col class="gutter-row" [nzSpan]="3">
+                <div class="inner-box" style="display: flex;justify-content: flex-start;">
+                    <nz-select style="width: 80%;" formControlName="defaultRecordingVal" [(ngModel)]="selectedValue" [compareWith]="compareFn"
+                        (ngModelChange)="log($event)" nzAllowClear nzPlaceHolder="Choose">
+                        <nz-option *ngFor="let option of optionList" [nzValue]="option.value"
+                            [nzLabel]="option.label"></nz-option>
+                    </nz-select>
+                </div>
+            </div>
+            <div nz-col class="gutter-row" [nzSpan]="6">
+                <div class="inner-box">Continously 24 Hour Recording</div>
+            </div>
+        </div>
+
+    </div>
+    <div *ngIf="current==1" class="steps-content" style="display: flex;flex-direction: column;overflow-x: scroll;">
+
+        <div style="display: flex;justify-content: flex-end;padding: 20px;">
+            <button (click)="addStore()" nz-button nzType="primary">Add New Store</button>
+        </div>
+       <div style="display: flex;">
+        <div formArrayName="customerStores" *ngFor="let store of storeInfo.controls;let i=index" style="padding: 1em;">
+            <nz-card style="width:500px;" [nzBordered]="false" nzTitle="Store Info" [nzActions]="[actionEdit]">
+                <div [formGroupName]="i">
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="10" [nzXs]="14" nzFor="storeName" nzRequired nzTooltipTitle="Your login id">
+                            <span>Store Name</span>
+                        </nz-form-label>
+                        <nz-form-control [nzSm]="10" [nzXs]="18" nzErrorTip="Please input your user name!"
+                            nzPlaceHolder="Store name">
+                            <input nz-input id="storeName" formControlName="storeName" />
+                        </nz-form-control>
+                    </nz-form-item>
+        
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="10" [nzXs]="14" nzFor="storeLocation" nzRequired nzTooltipTitle="Your login id">
+                            <span>Store Location</span>
+                        </nz-form-label>
+                        <nz-form-control [nzSm]="10" [nzXs]="18" nzErrorTip="Please input your user name!">
+                            <input nz-input id="storeLocation" formControlName="storeLocation" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="10" [nzXs]="14" nzFor="storePincode" nzRequired
+                            nzTooltipTitle="Your login id">
+                            <span>Store Postal Code</span>
+                        </nz-form-label>
+                        <nz-form-control [nzSm]="10" [nzXs]="18" nzErrorTip="Please input your user name!">
+                            <input nz-input id="storePincode" formControlName="storePincode" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <div style="display:flex;justify-content: flex-end;">
+                        <button (click)="addCamera(i)" nz-button nzType="primary"><span nz-icon nzType="video-camera-add"
+                                nzTheme="outline"></span> Add Camera</button>
+                    </div>
+                    <div formArrayName="storeCameras" *ngFor="let camera of camerasInfo(i).controls;let ind=index">
+                        <div [formGroupName]="ind">
+                            <nz-divider> {{ind==0?"Add First Camera info":''}}</nz-divider>
+        
+                            <nz-form-item>
+                                <nz-form-label [nzSm]="10" [nzXs]="14" nzFor="cameraName" nzRequired
+                                    nzTooltipTitle="Your login id">
+                                    <span>Camera Name</span>
+                                </nz-form-label>
+                                <nz-form-control [nzSm]="10" [nzXs]="18" nzErrorTip="Please input your user name!">
+                                    <input nz-input id="cameraName" formControlName="cameraName" />
+                                </nz-form-control>
+                            </nz-form-item>
+        
+                            <nz-form-item>
+                                <nz-form-label [nzSm]="10" [nzXs]="14" nzFor="manufacturer" nzRequired
+                                    nzTooltipTitle="Your login id">
+                                    <span>Manufacturer</span>
+                                </nz-form-label>
+                                <nz-form-control [nzSm]="10" [nzXs]="18" nzErrorTip="Please input your user name!">
+                                    <input nz-input id="manufacturer" formControlName="manufacturer" />
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label [nzSm]="10" [nzXs]="14" nzFor="modelName" nzRequired
+                                    nzTooltipTitle="Your login id">
+                                    <span>Model</span>
+                                </nz-form-label>
+                                <nz-form-control [nzSm]="10" [nzXs]="18" nzErrorTip="Please input your user name!">
+                                    <input nz-input id="storeName" formControlName="modelName" />
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+        
+        
+        
+                </div>
+            </nz-card>
+            <ng-template #actionEdit>
+                <span nz-icon nzType="delete"></span>
+              </ng-template>
+        </div>
+       </div>
+            
+          
+      
+    </div>
+    <div class="steps-content" *ngIf="current==2">
+        {{current}}
+    </div>
+    <div class="steps-action" style="display: flex;justify-content: flex-end;">
+        <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
+            <span>Previous</span>
+        </button>
+        <button nz-button nzType="default" (click)="next()" *ngIf="current < 1">
+            <span>Next</span>
+        </button>
+        <button nz-button nzType="primary" (click)="done()" *ngIf="current === 1">
+            <span>Register</span>
+        </button>
+    </div>
+</form>

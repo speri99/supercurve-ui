@@ -1,0 +1,79 @@
+<div style="display: flex;justify-content: center;">
+    <mat-horizontal-stepper #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Input Data</ng-template>
+                <div style="display: flex; flex-direction: column; place-content: space-around;" >
+                    <div>
+                        <p style="font-weight: bold;">1 : Input Data</p>
+                        <div style="display: flex;flex-direction: row;">
+
+                            <div class="upload">
+                                <button mat-button matStepperNext>Upload</button>
+                            </div>
+
+                            <div class="or">
+                                <p>Or</p>
+                            </div>
+                            <div class="input">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Enter URL</mat-label>
+                                    <input type="email" matInput
+                                           placeholder="ac@example.com">
+                                    
+                                  </mat-form-field>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div style="padding-top: 30px;">
+                        <p style="font-weight: bold;">2 : Select Domain Model</p>
+                        <div style="display: flex;flex-direction: row;">
+
+                            <div class="input2">
+                                <mat-form-field>
+                                    <mat-label>Domain</mat-label>
+                                    <mat-select name="food">
+                                        <mat-option >Select</mat-option>
+                                     
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+
+                            <div class="input2">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Email</mat-label>
+                                    <input type="email" matInput
+                                           placeholder="Ex. pat@example.com">
+                                    <mat-hint>Errors appear instantly!</mat-hint>
+                                  </mat-form-field>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Annotators Task</ng-template>
+
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [completed]="completed" [state]="state">
+            <ng-template matStepLabel>Review</ng-template>
+            You are now done.
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="done()">Confirm</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

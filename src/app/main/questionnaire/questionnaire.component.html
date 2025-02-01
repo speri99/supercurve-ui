@@ -1,0 +1,52 @@
+<div style="padding: 10px; display: flex;justify-content: center;flex-direction: column;align-items: center;">
+    <div>
+        <div>
+            <span>Create Questionnaire</span>
+        </div>
+        <div style="display: flex;flex-direction: row;align-items: center;align-content: space-evenly;padding: 10px;">
+            <div>
+                <span>
+                    Select Model
+                </span>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>Domain</mat-label>
+                    <mat-select name="food">
+                        <mat-option >Select</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+           
+        </div>
+        <div style="display: flex;flex-direction: row;align-items: center;align-content: space-evenly;padding: 10px;">
+            <div>
+                <span>
+                    Select scale of score
+                </span>
+            </div>
+            <div>
+                <button mat-icon-button *ngFor="let ratingId of ratingArr;index as i" [id]="'star_'+i"  matTooltipPosition="above">
+                    {{i}}
+                  </button>
+            </div>
+        </div>
+        <div style="display: flex;flex-direction: row;align-items: center;align-content: space-evenly;padding: 10px;">
+            <div>
+                <span>
+                    Confidence
+                </span>
+            </div>
+            <div>
+                <button mat-icon-button *ngFor="let ratingId of ratingArr;index as i" [id]="'star_'+i"  matTooltipPosition="above">
+                    {{i}}
+                  </button>
+            </div>
+    
+           
+    
+        </div>
+    </div>
+  
+
+</div>
