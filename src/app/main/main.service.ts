@@ -106,7 +106,7 @@ export class MainService {
   }
 
   getUserById(id:any){
-    return this.httpClient.get(environment.baseUrl+"/"+id);
+    return this.httpClient.get(environment.baseUrl+"/api/users/"+id);
   }
 
   updateUserDetails(user:any){
