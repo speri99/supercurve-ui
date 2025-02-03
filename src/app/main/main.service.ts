@@ -91,14 +91,14 @@ export class MainService {
   }
 
   registerCustomer(customerObj:any){
-    return this.httpClient.post("http://localhost:9090/api/customer",customerObj);
+    return this.httpClient.post(environment.baseUrl+"/api/customer",customerObj);
   }
   getAllCustomers(){
-    return this.httpClient.get("http://localhost:9090/api/customer");
+    return this.httpClient.get(environment.baseUrl+"/api/customer");
   }
 
   getCustomerById(id:any){
-    return this.httpClient.get("http://localhost:9090/api/customer"+"/"+id);
+    return this.httpClient.get(environment.baseUrl+"/api/customer"+"/"+id);
   }
 
   getAllPermissions(){
@@ -106,7 +106,7 @@ export class MainService {
   }
 
   getUserById(id:any){
-    return this.httpClient.get("http://localhost:9090/api/users"+"/"+id);
+    return this.httpClient.get(environment.baseUrl+"/"+id);
   }
 
   updateUserDetails(user:any){
